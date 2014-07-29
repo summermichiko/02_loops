@@ -1,72 +1,51 @@
-//repeat
-var repeat = function(yo, number) { //doesn't work with "yo", why?
+var repeat = function(yo, number) {
 	var myArray = [];
-	for(x=0; x<number; x++) {
+	for(var x=0; x<number; x++) {
 	    myArray.push("yo"); 
 	}
 
 	var string = myArray.join("");
 	return string; 
-}
+};
 
-//looping over arrays
-// var join = function(myArray, separator) {
-//     var preOutput = myArray.toString("");
-//     var finalOutput = preOutput.replace(/,/g , separator);
-//     console.log(finalOutput);
-//     return(finalOutput);
-// }
 
-var join = function(array, separator){
+var join = function(array, delimiter){
 	var finalString = "";
-
-	if(typeof separator === "undefined"){
-		separator = "";
+	if(typeof delimiter === "undefined"){ //if you add delimiter as an argument, it automatically becomes undefined
+		delimiter = ""; 
 	}
-	// apple/banana/cherry
-	for(var i = 0; i < array.length; i ++){
-		finalString+= array[i]
-		//apple/bananacherry
+	for(var i = 0; i < array.length; i++){
+		finalString += array[i];
 		if(i !== array.length - 1) {
-			finalString += separator;
+			finalString += delimiter;
 		}
 	}
 	return finalString;
-}
+};
 
-// var array = ["apple", "banana", "cherry"]; //FIX 9
 
-// array.type = "fruits";
-// array.first = function() {
-// 	return this[0];
-// }
-
-// join(array);
-
-//sum
 var sum = function(newArray) {
     var total = 0;
 	for(var i=0; i<newArray.length; i++) {
-		total = total + newArray[i];
+		total += newArray[i];
 	}
     return total;
 };
 
-//looping over hashes
-var paramify = function(hash) {
-    var word = "";
-    var array = [];
-    var enuArray = Object.keys(hash) // Array of all enumerable own properties
-    for (var i in enuArray) {
-        sum = enuArray[i] + "=" + hash[enuArray[i]];
-        array.push(sum);
-    }
-    array = array.sort();
-    word = array.join("&");
-    return word;
-}
 
-//factorial
+function paramify(myObject){
+	var result = [];
+	for(thing in myObject) {
+		if(myObject.hasOwnProperty(thing)) {
+			result.push(thing + "=" + myObject(thing));
+		}
+	}
+	result.sort();
+	string = result.join("&");
+	return string;
+};
+
+
 var factorial = function(n) {
   if (n <= 1) {
       return 1;
@@ -77,14 +56,45 @@ var factorial = function(n) {
 };
 
 
-//the arguments array
-var concat_string = function() { //FIX 23, 24
-	return Array.prototype.slice.call(arguments).join("");
-
-      // var str = arr.join("");
-      // // console.log(str);
-      // return str;
+var concat_string = function() {
+	return join(arguments, ""); //arguments is built-in and is available in every function
 };
+
+
+
+
+// function test() { **can declare test(n) above this line (order doesn't matter)
+// }; 
+// vs.
+// var test = function() { **best practice (order does matter)
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
