@@ -1,18 +1,16 @@
-var repeat = function(yo, number) {
+var repeat = function(string, number) {
 	var myArray = [];
 	for(var x=0; x<number; x++) {
 	    myArray.push("yo"); 
 	}
-
-	var string = myArray.join("");
-	return string; 
+	return myArray.join("");
 };
 
 
 var join = function(array, delimiter){
 	var finalString = "";
-	if(typeof delimiter === "undefined"){ //if you add delimiter as an argument, it automatically becomes undefined
-		delimiter = ""; 
+	if(typeof delimiter === "undefined"){ //if there is no delimeter, it will be undefined 
+		delimiter = ""; //if you add delimiter as an argument, it automatically becomes undefined
 	}
 	for(var i = 0; i < array.length; i++){
 		finalString += array[i];
@@ -35,22 +33,26 @@ var sum = function(newArray) {
 
 function paramify(myObject){
 	var result = [];
-	for(thing in myObject) {
-		if(myObject.hasOwnProperty(thing)) {
-			result.push(thing + "=" + myObject(thing));
-		}
+	for(key in myObject) {
+		if(myObject.hasOwnProperty(key)) {
+			result.push(key + "=" + myObject[key]);
+		}							//value of the object
 	}
-	result.sort();
-	string = result.join("&");
+	result.sort(); //puts items of an array in alphabetical order
+	string = result.join("&"); //joins elements of an array into a string
 	return string;
 };
 
 
 var factorial = function(n) {
+	var final = 1;
   if (n <= 1) {
-      return 1;
+      return final;
   } else {
-    var final = n * factorial(n-1);
+  	for(i=n; i>1; i--) {
+  		final = final * i;
+  	}
+    //var final = n * factorial(n-1);
   	return final;
   }
 };
